@@ -26,6 +26,9 @@ public class PersonBuilder {
     }
 
     public PersonBuilder setAge(int age) {
+        if (age <= 0) {
+            throw new IllegalArgumentException("age can not be less than 0");
+        }
         this.age = age;
         return this;
     }
@@ -38,9 +41,6 @@ public class PersonBuilder {
     public Person build() {
         if (name == null || surname == null) {
             throw new IllegalStateException("name and surname can not be null");
-        }
-        if (age <= 0) {
-            throw new IllegalArgumentException("age can not be less than 0");
         }
         return new Person(this);
     }
